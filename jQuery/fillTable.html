@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <title>Fill Table</title>
+</head>
+<style>
+    table{
+        border-collapse: collapse;
+    }
+    th{
+        border: 1px solid white;
+        background-color: black;
+        color: yellow;
+    }
+    td{
+        border: 1px solid black;
+        width: 50px;
+        height: 50px;
+    }
+</style>
+<body>
+    <table id="tbl">
+        <tbody>
+
+        </tbody>
+    </table>
+    <input type="button" value="그리기" id="btnDraw">
+    <input type="button" value="채우기" id="btnFill">
+    <input type="button" value="스네이크" id="btnSnake">
+    <input type="button" value="달팽이" id="btnSnail">
+</body>
+<script>
+    let width = 5;
+    let height = 4;
+    function drawTable(width,height){
+        tmpHtml='';
+        for(let i=0;i<height;i++){
+            tmpHtml += '<tr>';
+            for(let j = 0;j<width;j++){
+                tmpHtml += '<td></td>'
+            }
+            tmpHtml += '</tr>';
+        }
+        $('#tbl tbody').html(tmpHtml);
+    }
+    function fillTable(width, height){
+        for(let i=0;i<height;i++){
+            for(let j = 0;j<width;j++){
+                $('#tbl tr:eq('+i+') td:eq('+j+')').html((i*width)+j+1);
+            }
+        }
+    }
+    function fillSnake(width,height){
+        for(let i=0;i<height;i++){
+            for(let j = 0;j<width;j++){
+                if(i%2==0){
+                    $('#tbl tr:eq('+i+') td:eq('+j+')').html((i*width)+j+1);
+                }else{
+                    $('#tbl tr:eq('+i+') td:eq('+j+')').html((i+1*width)+(height-j));
+                }
+            }
+        }
+    }
+    function drawSnale(max_size){
+        let num = 1;
+        let maxAr= max_size-1;
+        for(let count = 0 ; count<=maxAr;count++){
+            if(count%2==0){
+                for(let j = (count/2);j<=maxAr-(count/2);j++){
+                    $('#tbl tr:eq('+(count/2)+') td:eq('+j+')').html(num++);
+                }
+                for(let i = (count/2)+1;i<=maxAr-(count/2);i++){
+                    $('#tbl tr:eq('+i+') td:eq('+(max_size-1-(count/2))+')').html(num++);
+                }
+            }else{
+                for(let j = maxAr-((count+1)/2);j>=(count-1)/2;j--){
+                    $('#tbl tr:eq('+(maxAr-((count-1)/2))+') td:eq('+j+')').html(num++);
+                }
+                for(let i = maxAr-(count+1)/2;i>=(count+1)/2;i--){
+                    $('#tbl tr:eq('+i+') td:eq('+(count-1)/2+')').html(num++);
+                }
+            }
+        }
+    }
+    $(document)
+    .on('click','#btnDraw',function(){
+        drawTable(width,height);
+    })
+    .on('click','#btnFill',function(){
+        fillTable(width,height)
+    })
+    .on('click','#btnSnake',function(){
+        fillSnake(width,height)
+    })
+    .on('click','#btnSnail',function(){
+        let n=prompt('n값을 입력하세요.');
+        drawTable(n,n);
+        drawSnale(n)
+    })
+</script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <title>TBL Score</title>
+</head>
+<style>
+    table{
+        border-collapse: collapse;
+    }
+    th{
+        border: 1px solid white;
+        background-color: black;
+        color: yellow;
+    }
+    td{
+        border: 1px solid black;
+    }
+</style>
+<body>
+    <input type="button" value="Add" id="btnAdd">
+    <table id="tbl">
+        <thead>
+            <tr>
+                <th>이름</th><th>모바일</th><th>수학점수</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+        </tfoot>
+    </table>
+</body>
+<script>
+    $(document)
+    .on('click','#btnAdd',function(){
+        let name = prompt('이름을 입력하시오.');
+        let mobileNum = prompt('모바일번호를 입력하시오.');
+        let mathScore = prompt('수학점수를 입력하시오.',0);
+        $('#tbl tbody').append('<tr><td>'+name+'</td><td>'+mobileNum+'</td><td>'+mathScore+'</td></tr>')
+    })
+</script>
+</html>

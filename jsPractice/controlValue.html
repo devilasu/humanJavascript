@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interval Test</title>
+</head>
+<body>
+    <input type="button" name="btnGo" value="       시작       " onclick="doStart()">
+</body>
+<script>
+    let timer;
+    let n=5;
+    function doStart(){
+        timer = setInterval(printCount,1000);
+    }
+    function printCount(){
+        console.log(n);
+        if(n>=0){
+            document.getElementsByName("btnGo")[0].value=n;
+            n--;
+        }else{
+            document.getElementsByName("btnGo")[0].value="시작!";
+            clearInterval(timer);
+            n=5;
+        }
+    }
+
+</script>
+</html>

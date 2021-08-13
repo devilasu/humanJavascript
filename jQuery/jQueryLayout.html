@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>입력</title>
+</head>
+<body>
+    Text: <input type="text" name="txtName" id="txtName"><br>
+    Hidden: <input type="hidden" id="txtHidden" value="숨김"><br>
+    Radio: <input type="radio" name="gender" id="male" checked>남성&nbsp;
+    <input type="radio" name="gender" id="female">여성<br>
+    Number: <input type="number" name="txtNum" id="txtNum"><br>
+    Checkbox: <input type="checkbox" name="hobby" id="movie" checked>영화보기
+    <input type="checkbox" name="hobby" id="riding">모터사이클
+    <input type="checkbox" name="hobby" id="climbing" checked>등산<br>
+
+    Tesxtarea: <textarea name="txtArea" id="txtArea" cols="60" rows="3"></textarea><br>
+    Select: <select id="selNation" name="selNation" size=5>
+        <option value="KR" selected>대한민국</option>
+        <option value="US">USA</option>
+        <option value="FR">France</option>
+        <option value="UK">England</option>
+    </select><br>
+    <button id="btnShow">보기</button>
+    <button id="btnWrite">쓰기</button>
+    <div id=dvShow style="background-color: yellow; width: 400px;height: 200px; border: 1px red solid;"></div>
+</body>
+<script>
+    $(document)
+    .on("click","#btnShow",function(){
+        str1=$("#txtName").val();
+        str2=$("#txtHidden").val();
+        if($("#male").is(":checked")){
+            str3="male";
+        } else if($("#female").is(":checked")){
+            str3="female";
+        } else{
+            str3="";
+        }
+        str4=$("#txtNum").val();
+        str5="";
+        if($("#movie").is(":checked")){
+            str5+="영화보기";
+        }
+        if($("#riding").is(":checked")){
+            str5+="모터사이클"
+        }
+        if($("#climbing").is(":checked")){
+            str5+="등산"
+        }
+        str6=$("#txtArea").val();
+        str7=$("#selNation").val();
+        str=str1+"\n"+str2+"\n"+str3+"\n"+str4+"\n"+str5+"\n"+str6+"\n"+str7;
+        $("#dvShow").html(str);
+    })
+    .on("click","#btnWrite",function(){
+        $("#txtName").val("Johanson");
+        $("#txtNum").val("01099990000");
+        $("#female").prop("checked",true);
+        $("#movie").prop("checked",true);
+    })
+    .on("blur","#txtName",function(){
+        alert($(this).val());
+    })
+</script>
+</html>

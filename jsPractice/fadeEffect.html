@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<style>
+    .style1{
+        background-color: white;
+        color: red;
+        font-size: 12px;
+    }
+    .style2{
+        background-color: yellow;
+        color: blue;
+        font-size: 12px;
+    }
+</style>
+<body>
+    점수: <input type="text" name="point" id="point" value="100"><br>
+    <input type="button" name="btnShow" id="btnShow" value="Show">
+    <input type="button" name="btnClear" id="btnClear" value="Clear">
+</body>
+<script>
+    $(document).ready(function(){
+        $("#point").val(50);
+        $("#btnClear").hide();
+    });
+    $(document)
+    .on("click","#btnShow",function(){
+        $("#point").removeClass("style2");
+        $("#point").addClass("style1");
+        $("#point").val(100);
+        $(this).hide();
+        $("#btnClear").show();
+
+    })
+    .on("click",'#btnClear',function(){
+        $("#point").removeClass("style1");
+        $("#point").addClass("style2");
+        $("#point").val(999);
+        $(this).hide();
+        $("#btnShow").show();
+        
+    })
+    ;
+</script>
+</html>

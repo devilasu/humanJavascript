@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Test</title>
+</head>
+<body>
+    점수: <input type="text" name="point"><br>
+    <input type="button" name="btnPoint"value="Stop" onclick="doStop()">
+    <input type="button" name="btnCalc" value="Show" onclick="getResult()"><br>
+</body>
+</html>
+
+<script>
+    let gn;
+    let timer;
+
+    function getResult(){
+        alert("Interval Timer가 시작합니다.");
+        gn=2;
+        timer=setInterval(function(){
+            console.log(gn);
+            document.getElementsByName("point")[0].value=gn+"초가 지났습니다.";
+            gn+=2;
+        },2000);
+    }
+    function doStop(){
+        clearInterval(timer);
+        document.getElementsByName("point")[0].value="";
+    }
+</script>

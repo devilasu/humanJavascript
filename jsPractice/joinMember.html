@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<style>
+    .wrap{
+        width:40%;
+        line-height: 150%;
+    }
+    button{
+        width:50px;
+        height: 30px;
+    }
+
+
+</style>
+<body>
+    <div class="wrap">
+            <p>모바일번호: <input type="tel" name="mobileNum" id="mobileNum"></p></p>
+            <p>이름(실명): <input type="text" name="name" id="name"></p>
+            <p>성별: <input type="radio" name="gender" id="male" value="male" checked>남성
+                <input type="radio" name="gender" id="female" value="female">여성</p>
+            <p>생일: <input type="date" name="birth" id="birth"></p>
+            <p>거주지역: <select name="region" id="region" style="width: 100px;">
+                <option value="kyungki">경기</option>
+                <option value="kangwon">강원</option>
+                <option value="chungnam">충남</option>
+                <option value="chungbuk">충북</option>
+                <option value="kyungnam">경남</option>
+                <option value="kyungbuk">경북</option>
+                <option value="seoul">서울</option>
+                <option value="busan">부산</option>
+                <option value="daejeon">대전</option>
+                <option value="kwangju">광주</option>
+                <option value="daegu">대구</option>
+                <option value="incheon">인천</option>
+            </select></p>
+            <p>관심분야: <input type="checkbox" name="inter" value="home">재테크
+                <input type="checkbox" name="inter" value="land">부동산
+                <input type="checkbox" name="inter" value="stock">주식
+                <input type="checkbox" name="inter" value="bond">채권<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="inter" value="fno">선물/옵션
+                <input type="checkbox" name="inter" value="foreign">해외투자
+                <input type="checkbox" name="inter" value="pb">공모주</p>
+            <p>취미: <input type="checkbox" name="hobby" value="golf">골프
+                <input type="checkbox" name="hobby" value="swim" >수영
+                <input type="checkbox" name="hobby" value="fitness">피트니스
+                <input type="checkbox" name="hobby" value="climbing">등산<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="hobby" value="movie">영화
+                <input type="checkbox" name="hobby" value="riding" >라이딩</p>
+            <p>비밀번호: <input type="password" name="pass" id="pass"></p>
+            <p>비밀번호 확인: <input type="password" name="chPass" id="chPass"></p>
+            <button id="btnShow">보기</button>
+            <button id="btnClear">Clear</button>
+    </div>
+</body>
+<script>
+    function chkNull(){
+        if($('#mobileNum').val()==""){
+            alert("모바일 번호를 입력하세요.");
+            return false;
+        }else if($('#name').val()==""){
+            alert("이름을 입력하세요.");
+            return false;
+        }else if($('birth').val()==""){
+            alert("생일을 입력하세요.");
+            return false;
+        }else if($('input[name=inter]:checked').length==0){
+            alert("관심분야를 입력하세요.");
+            return false;
+        }else if($('input[name=hobby]:checked').length==0){
+            alert("취미를 입력하세요.");
+            return false;
+        }else if($('#pass').val=='' || $('#chPass').val()==''){
+            alert("비밀번호를 입력하세요.");
+            return false;
+        }else if($('#pass').val()!=$('#chPass').val()){
+            alert("비밀번호가 다릅니다.");
+            return false;
+        }else{
+            return true;
+        }
+    }
+    $(document)
+    .on('click','#btnShow',function(){
+        if(!chkNull()){
+            return false;
+        }
+        str='';
+        str+="모바일 번호: "+$('#mobileNum').val()+'\n';
+        str+='이름:'+$('#name').val()+'\n';
+        str+='성별: '+$('input[name="gender"]:checked').val()+'\n';
+        str+='생일: '+$('#birth').val()+'\n';
+        str+='거주지역: '+$('#region option:selected').text()+'\n';
+        str+='관심분야: ';
+        $('input[name=inter]:checked').each(function(){
+            switch($(this).val()){
+                case 'home':
+                    str+='재테크 ';
+                    break;
+                case 'land':
+                    str+='부동산 ';
+                    break;
+                case 'stock':
+                    str+='주식 ';
+                    break;
+                case 'bond':
+                    str+='채권 ';
+                    break;
+                case 'fno':
+                    str+='선물/옵션 ';
+                    break;
+                case 'foreign':
+                    str+='해외투자 ';
+                    break;
+                case 'pb':
+                    str+='공모주 ';
+                    break;
+
+            }
+        });
+        str+='\n';
+        str+='취미: ';
+        $('input[name=hobby]:checked').each(function(){
+            switch($(this).val()){
+                case 'golf':
+                    str+="골프 ";
+                    break;
+                case 'swim':
+                    str+="수영 ";
+                    break;
+                case 'fitness':
+                    str+="피트니스 ";
+                    break;
+                case 'climbing':
+                    str+="등산 ";
+                    break;
+                case 'movie':
+                    str+="영화 ";
+                    break;
+                case 'riding':
+                    str+="라이딩 ";
+                    break;
+            }
+        });
+        str+='\n';
+        alert(str);
+        return false;
+    })
+    .on('click','#btnClear',function(){
+        $('#mobileNum').val('');
+        $('#name').val('');
+        $('#male').prop('checked',true);
+        $('#birth').val('');
+        $('select[name=region] option[value=kyungki]').prop("selected",true);
+        $('input[name=inter]:checked').each(function(){
+            $(this).prop('checked',false);
+        });
+        $('input[name=hobby]:checked').each(function(){
+            $(this).prop('checked',false);
+        });
+        $('#pass').val('');
+        $('#chPass').val('');
+    });
+</script>
+</html>

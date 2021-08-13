@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Study</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<style>
+    table td{
+        border: 1px solid black;
+        width: 50px;
+        height: 50px;
+    }
+</style>
+<body>
+    <table id="tbl">
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td><input type="button" value="Delete" id="btnDelete" ></td>
+        <td><input type="button" value="Prepend" id="btnPrepend"></td>
+        <td><input type="button" value="Append" id="btnAppend" ></td></tr>
+    </table>
+</body>
+<script>
+    $(document)
+    .ready(function(){
+
+    })
+    .on('click','#btnAppend',function(){
+        $('#tbl').append('<tr><td>a</td><td>B</td><td>C</td></tr>')
+        return false;
+    })
+    .on('click','#btnDelete',function(){
+        $('#tbl').find('tr:last').remove();
+        return false
+    })
+    .on('click','#btnPrepend',function(){
+        $('#tbl').prepend('<tr><td>1</td><td>2</td><td>3</td></tr>');
+        return false;
+    })
+</script>
+</html>

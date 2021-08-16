@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <title>Click Tbl</title>
+</head>
+<style>
+    #tbl tr td{
+        width: 40px;
+        height: 40px;
+        border: 1px solid black;
+        text-align: center;
+    }
+</style>
+<body>
+    <table id="tbl">
+        <tr>
+            <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td></td><td></td><td></td><td></td>
+        </tr>
+    </table>
+</body>
+<script>
+    $(document)
+    .ready(function(){
+        n=1;
+        $('table tr').even().css('background-color','cyan');
+    })
+    .on('mouseenter','table tr',function(){
+        bcolor=$(this).css('background-color');
+        //console.log(bcolor);
+        $(this).css('background-color','brown');
+        return false;
+    })
+    .on('mouseleave','table tr',function(){
+        $(this).css('background-color',bcolor);
+        return false;
+    })
+    .on('click','table tr td',function(){
+        if($(this).html()==''){
+            $(this).html(n++);
+        }
+    })
+</script>
+</html>

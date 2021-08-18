@@ -1,0 +1,13 @@
+.left, .middle, .right{
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    width: 30%;
+}
+#menuList, #orderList, #sellList{
+    width: 80%;
+}
+button{
+    width:50px;
+    height:40px;
+}

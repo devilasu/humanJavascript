@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src="manage.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Menu Management</title>
+</head>
+<body>
+    <div class="wrap">
+        <div class="left">
+            <p>메뉴 목록</p>
+            <select name="menuList" id="menuList" size="20">
+                <option value="cafeLatte">카페라떼 3000</option>
+                <option value="espresso">에스프레소 2000</option>
+                <option value="americano">아메리카노 2500</option>
+                <option value="caffuchino">카푸치노 3500</option>
+            </select>
+        </div>
+        <div class="middle">
+            <p>주문 목록</p>
+            <select name="orderList" id="orderList" size="10"></select>
+            <p>메뉴명 <input type="text" name="menuName" id="menuName" readonly></p>
+            <p>수량   <input type="number" name="menuCount" id="menuCount"></p>
+            <p>총액   <input type="text" name="totalPrice" id="totalPrice" readonly></p>
+            <div class="btnList">
+                <button id="btnAdd">추가</button>
+                <button id="btnDel">삭제</button>
+                <button id="btnOrder">주문</button>
+            </div>
+        </div>
+        <div class="right">
+            <p>매출현황</p>
+            <select name="sellList" id="sellList" size="10"></select><br><br>
+            <button id="btnSellDel">삭제</button>
+        </div>
+    </div>
+</body>
+</html>
